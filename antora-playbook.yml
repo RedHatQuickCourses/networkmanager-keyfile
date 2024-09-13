@@ -1,6 +1,6 @@
 site:
-  title: FIXME Course Title
-  start_page: REPLACEREPONAME::index.adoc
+  title: NetworkManager Keyfile
+  start_page: networkmanager-keyfile::index.adoc
 
 content:
   sources:

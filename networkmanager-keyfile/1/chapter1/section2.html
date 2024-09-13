@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Section 2 :: NetworkManager Keyfile</title>
+    <title>The keyfile config format :: NetworkManager Keyfile</title>
     <link rel="prev" href="section1.html">
     <link rel="next" href="section3.html">
     <meta name="generator" content="Antora 3.1.3">
@@ -55,45 +55,37 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Chapter 1</a>
+    <a class="nav-link" href="index.html">Describe and Configure NetworkManager Keyfile</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section1.html">Section 1</a>
+    <a class="nav-link" href="section1.html">What is NetworkManager keyfile?</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="section2.html">Section 2</a>
+    <a class="nav-link" href="section2.html">The keyfile config format</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section3.html">Section 3</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter2/index.html">Chapter 2</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section1.html">Section 1</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter3/index.html">Chapter 3</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section1.html">Section 1</a>
+    <a class="nav-link" href="section3.html">Directories of interest</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section2.html">Section 2</a>
+    <a class="nav-link" href="section4.html">What happens to the ifcfg-rh files now?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section5.html">What does the new precedence look like?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section6.html">What is the upgrade/compatibility impact of this change?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section7.html">Is there any change in the user experience?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section8.html">Advantages of NetworkManager keyfile</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section9.html">Guided Exercise: Configure NetworkManager to use a keyfile</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section10.html">Summary</a>
   </li>
 </ul>
   </li>
@@ -135,8 +127,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">NetworkManager Keyfile</a></li>
-    <li><a href="index.html">Chapter 1</a></li>
-    <li><a href="section2.html">Section 2</a></li>
+    <li><a href="index.html">Describe and Configure NetworkManager Keyfile</a></li>
+    <li><a href="section2.html">The keyfile config format</a></li>
   </ul>
 </nav>
 </div>
@@ -145,26 +137,77 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Section 2</h1>
-<div class="ulist">
-<ul>
-<li>
-<p>Create multiple copies of this section as needed.</p>
-</li>
-<li>
-<p>Remove any unnecessary sections or chapter pages.</p>
-</li>
-<li>
-<p>Customize the section as appropriate.</p>
-</li>
-<li>
-<p>Ensure that each page contains a manageable amount of content.</p>
-</li>
-</ul>
+<h1 class="page">The keyfile config format</h1>
+<div class="paragraph">
+<p>The keyfile config format is a simple .ini-style format. It consists of sections (groups) of key-value pairs. Each section corresponds to a setting name as described under the settings specification in manual page (nm-settings(5)).</p>
+</div>
+<div class="paragraph">
+<p>Each configuration key/value pair in the section is one of the properties listed in the settings specification. Most of the properties of the specification is written in the same format into the keyfile too. These are stored in the files in a more readable way.</p>
+</div>
+<div class="paragraph">
+<p>You can create or modify the keyfile connection files manually, even if that is not the recommended way of managing the profiles. However, if you choose to do that, you must inform NetworkManager about the changes via the nmcli con reload command.</p>
+</div>
+<div class="paragraph">
+<p>Sample keyfile configuration for a bridge connection.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cat /etc/NetworkManager/system-connections/bridge-br0.nmconnection</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Sample output</div>
+<div class="content">
+<pre>[connection]
+id=bridge-br0
+uuid=6dac3bf-8d0e-4c2f-8d92-ceba5f427d18
+type=bridge
+interface-name=br0
+
+[bridge]
+
+[ipv4]
+method=auto
+
+[ipv6]
+addr-gen-mode=stable-privacy
+method=auto
+
+[proxy]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sample keyfile configuration for an ethernet connection.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cat /etc/NetworkManager/system-connections/ens3.nmconnection</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Sample output</div>
+<div class="content">
+<pre>[connection]
+id=ens3
+uuid=ee95a23e-a1d4-8839-79668382c0e2
+type=ethernet
+interface-name=en3
+
+[ethernet]
+
+[ipv4]
+method=auto
+
+[ipv6]
+addr-gen-mode=eui64
+method=auto
+
+[proxy]</pre>
+</div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="section1.html">Section 1</a></span>
-  <span class="next"><a href="section3.html">Section 3</a></span>
+  <span class="prev"><a href="section1.html">What is NetworkManager keyfile?</a></span>
+  <span class="next"><a href="section3.html">Directories of interest</a></span>
 </nav>
 </article>
   </div>

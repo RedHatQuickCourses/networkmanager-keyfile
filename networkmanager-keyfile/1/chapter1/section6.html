@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Lab Environment :: NetworkManager Keyfile</title>
+    <title>What is the upgrade/compatibility impact of this change? :: NetworkManager Keyfile</title>
+    <link rel="prev" href="section5.html">
+    <link rel="next" href="section7.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -45,7 +47,7 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="index.html">Lab Environment</a>
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
   </li>
 </ul>
   </li>
@@ -53,37 +55,37 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter1/index.html">Describe and Configure NetworkManager Keyfile</a>
+    <a class="nav-link" href="index.html">Describe and Configure NetworkManager Keyfile</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter1/section1.html">What is NetworkManager keyfile?</a>
+    <a class="nav-link" href="section1.html">What is NetworkManager keyfile?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter1/section2.html">The keyfile config format</a>
+    <a class="nav-link" href="section2.html">The keyfile config format</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter1/section3.html">Directories of interest</a>
+    <a class="nav-link" href="section3.html">Directories of interest</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter1/section4.html">What happens to the ifcfg-rh files now?</a>
+    <a class="nav-link" href="section4.html">What happens to the ifcfg-rh files now?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter1/section5.html">What does the new precedence look like?</a>
+    <a class="nav-link" href="section5.html">What does the new precedence look like?</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="section6.html">What is the upgrade/compatibility impact of this change?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter1/section6.html">What is the upgrade/compatibility impact of this change?</a>
+    <a class="nav-link" href="section7.html">Is there any change in the user experience?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter1/section7.html">Is there any change in the user experience?</a>
+    <a class="nav-link" href="section8.html">Advantages of NetworkManager keyfile</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter1/section8.html">Advantages of NetworkManager keyfile</a>
+    <a class="nav-link" href="section9.html">Guided Exercise: Configure NetworkManager to use a keyfile</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter1/section9.html">Guided Exercise: Configure NetworkManager to use a keyfile</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter1/section10.html">Summary</a>
+    <a class="nav-link" href="section10.html">Summary</a>
   </li>
 </ul>
   </li>
@@ -125,7 +127,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">NetworkManager Keyfile</a></li>
-    <li><a href="index-lab-role.html">Lab Environment</a></li>
+    <li><a href="index.html">Describe and Configure NetworkManager Keyfile</a></li>
+    <li><a href="section6.html">What is the upgrade/compatibility impact of this change?</a></li>
   </ul>
 </nav>
 </div>
@@ -134,10 +137,23 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Lab Environment</h1>
+<h1 class="page">What is the upgrade/compatibility impact of this change?</h1>
 <div class="paragraph">
-<p>FIXME: Instructions for accessing the lab environment on the ROLE platform, for this hands-on based training.</p>
+<p>The biggest effect of this change is that new profiles are now persisted in keyfile format. This changes behavior for the users who expect NetworkManager to write ifcfg-rh files, or who have the scripts or tools that expect that.</p>
 </div>
+<div class="paragraph">
+<p>What still works is that the existing ifcfg files are loaded after upgrading from RHEL8 to RHEL9. Users who only use the D-Bus API (via one of the client applications like nmcli or the GUI), do not notice the difference.</p>
+</div>
+<div class="paragraph">
+<p>After upgrading NetworkManager, the ifcfg-rh files are still read, hence no intervention is required by the system administrator.</p>
+</div>
+<div class="paragraph">
+<p>Also, dropping configuration snippets during package upgrade has its own downsides because new installations behave differently than upgraded systems.</p>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="section5.html">What does the new precedence look like?</a></span>
+  <span class="next"><a href="section7.html">Is there any change in the user experience?</a></span>
+</nav>
 </article>
   </div>
 </main>

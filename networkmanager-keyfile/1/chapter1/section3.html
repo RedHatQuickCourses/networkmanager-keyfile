@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Section 3 :: NetworkManager Keyfile</title>
+    <title>Directories of interest :: NetworkManager Keyfile</title>
     <link rel="prev" href="section2.html">
-    <link rel="next" href="../chapter2/index.html">
+    <link rel="next" href="section4.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -55,45 +55,37 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Chapter 1</a>
+    <a class="nav-link" href="index.html">Describe and Configure NetworkManager Keyfile</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section1.html">Section 1</a>
+    <a class="nav-link" href="section1.html">What is NetworkManager keyfile?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section2.html">Section 2</a>
+    <a class="nav-link" href="section2.html">The keyfile config format</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="section3.html">Section 3</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter2/index.html">Chapter 2</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section1.html">Section 1</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter3/index.html">Chapter 3</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section1.html">Section 1</a>
+    <a class="nav-link" href="section3.html">Directories of interest</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section2.html">Section 2</a>
+    <a class="nav-link" href="section4.html">What happens to the ifcfg-rh files now?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section5.html">What does the new precedence look like?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section6.html">What is the upgrade/compatibility impact of this change?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section7.html">Is there any change in the user experience?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section8.html">Advantages of NetworkManager keyfile</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section9.html">Guided Exercise: Configure NetworkManager to use a keyfile</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section10.html">Summary</a>
   </li>
 </ul>
   </li>
@@ -135,8 +127,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">NetworkManager Keyfile</a></li>
-    <li><a href="index.html">Chapter 1</a></li>
-    <li><a href="section3.html">Section 3</a></li>
+    <li><a href="index.html">Describe and Configure NetworkManager Keyfile</a></li>
+    <li><a href="section3.html">Directories of interest</a></li>
   </ul>
 </nav>
 </div>
@@ -145,26 +137,29 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Section 3</h1>
+<h1 class="page">Directories of interest</h1>
+<div class="paragraph">
+<p>Depending on the purpose of the connection profile, the file can be saved in one of the following directories:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Create multiple copies of this section as needed.</p>
+<p><code>/etc/NetworkManager/system-connections/</code>:
+The general location for persistent profiles created by the user that can also be edited. NetworkManager copies them automatically to /etc/NetworkManager/system-connections/.</p>
 </li>
 <li>
-<p>Remove any unnecessary sections or chapter pages.</p>
+<p><code>/run/NetworkManager/system-connections/</code>:
+The location for temporary profiles that are automatically removed when you reboot the system.</p>
 </li>
 <li>
-<p>Customize the section as appropriate.</p>
-</li>
-<li>
-<p>Ensure that each page contains a manageable amount of content.</p>
+<p><code>/usr/lib/NetworkManager/system-connections/</code>:
+The location for pre-deployed immutable profiles. When you edit such a profile using the NetworkManager API, NetworkManager copies this profile to either the persistent or temporary storage.</p>
 </li>
 </ul>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="section2.html">Section 2</a></span>
-  <span class="next"><a href="../chapter2/index.html">Chapter 2</a></span>
+  <span class="prev"><a href="section2.html">The keyfile config format</a></span>
+  <span class="next"><a href="section4.html">What happens to the ifcfg-rh files now?</a></span>
 </nav>
 </article>
   </div>

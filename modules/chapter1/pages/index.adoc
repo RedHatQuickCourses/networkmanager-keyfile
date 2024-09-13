@@ -1,7 +1,12 @@
-= Chapter 1
+= Describe and Configure NetworkManager Keyfile
 
-In this section, we cover... FIXME
+*Topics covered in this section:* 
 
+Describe the use of NetworkManager keyfile
 
-- Add or remove section entries in the `antora.yaml` file as needed.
-- Ensure you create or delete the corresponding directory for the chapter accordingly.
+Describe the keyfile config format
+
+Configure a network interface to use a keyfile
+
+Describe the impact of this configuration on upgrade/compatibility and user experience
+

@@ -1,22 +1,23 @@
-= An Example Quick Course
+= NetworkManager Keyfile
 :navtitle: Home
 
 == Introduction
 
-Course Title: Course title FIXME
+Course Title: NetworkManager Keyfile
 
 Description:
-Course description FIXME
+Understand how keyfile works and configure it to have a network interface work using the keyfile.
 
-Duration: FIXME hours
+Duration: 30 minutes
 
 == Objectives
 
 On completing this course, you should be able to:
 
-* Observable, measurable objective...
-* Observable, measurable objective...
-* Observable, measurable objective...
+* Describe the use of NetworkManager keyfile
+* Describe the keyfile config format
+* Configure a network interface to use a keyfile
+* Describe the impact of this configuration on upgrade/compatibility and user experience
 
 == Prerequisites
 

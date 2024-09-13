@@ -1,6 +1,62 @@
-= Section 2
+= The keyfile config format
 
-* Create multiple copies of this section as needed.
-* Remove any unnecessary sections or chapter pages.
-* Customize the section as appropriate.
-* Ensure that each page contains a manageable amount of content.
+The keyfile config format is a simple .ini-style format. It consists of sections (groups) of key-value pairs. Each section corresponds to a setting name as described under the settings specification in manual page (nm-settings(5)).
+
+Each configuration key/value pair in the section is one of the properties listed in the settings specification. Most of the properties of the specification is written in the same format into the keyfile too. These are stored in the files in a more readable way.
+
+You can create or modify the keyfile connection files manually, even if that is not the recommended way of managing the profiles. However, if you choose to do that, you must inform NetworkManager about the changes via the nmcli con reload command.
+
+Sample keyfile configuration for a bridge connection.
+
+[source]
+----
+cat /etc/NetworkManager/system-connections/bridge-br0.nmconnection
+----
+
+.Sample output
+----
+[connection]
+id=bridge-br0
+uuid=6dac3bf-8d0e-4c2f-8d92-ceba5f427d18
+type=bridge
+interface-name=br0
+
+[bridge]
+
+[ipv4]
+method=auto
+
+[ipv6]
+addr-gen-mode=stable-privacy
+method=auto
+
+[proxy]
+----
+
+Sample keyfile configuration for an ethernet connection.
+
+[source]
+----
+cat /etc/NetworkManager/system-connections/ens3.nmconnection
+----
+
+.Sample output
+----
+[connection]
+id=ens3
+uuid=ee95a23e-a1d4-8839-79668382c0e2
+type=ethernet
+interface-name=en3
+
+[ethernet]
+
+[ipv4]
+method=auto
+
+[ipv6]
+addr-gen-mode=eui64
+method=auto
+
+[proxy]
+----
+

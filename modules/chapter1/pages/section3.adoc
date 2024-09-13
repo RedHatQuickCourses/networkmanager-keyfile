@@ -1,6 +1,13 @@
-= Section 3
+= Directories of interest
 
-* Create multiple copies of this section as needed.
-* Remove any unnecessary sections or chapter pages.
-* Customize the section as appropriate.
-* Ensure that each page contains a manageable amount of content.
+Depending on the purpose of the connection profile, the file can be saved in one of the following directories:
+
+* `/etc/NetworkManager/system-connections/`: 
+The general location for persistent profiles created by the user that can also be edited. NetworkManager copies them automatically to /etc/NetworkManager/system-connections/.
+
+* `/run/NetworkManager/system-connections/`: 
+The location for temporary profiles that are automatically removed when you reboot the system.
+
+* `/usr/lib/NetworkManager/system-connections/`: 
+The location for pre-deployed immutable profiles. When you edit such a profile using the NetworkManager API, NetworkManager copies this profile to either the persistent or temporary storage.
+

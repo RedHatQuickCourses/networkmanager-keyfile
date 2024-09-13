@@ -1,0 +1,7 @@
+= What happens to the ifcfg-rh files now?
+
+Legacy `ifcfg-` files are still supported and are not deprecated.
+
+If a connection has both a keyfile and an ifcfg- file, the keyfile is used and the ifcfg- file is ignored.
+
+NOTE: A deprecated functionality in RHEL 9 means it is removed in RHEL 10+. If a functionality is meant to be removed in RHEL 9, it needs to be announced as deprecated in RHEL 8.

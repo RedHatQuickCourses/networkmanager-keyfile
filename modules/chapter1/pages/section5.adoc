@@ -1,0 +1,9 @@
+= What does the new precedence look like?
+
+With RHEL9, the path `/etc/sysconfig/network-scripts/` where `ifcfg-rh`` files are found, is no longer the primary source for network interfaces.
+
+NetworkManager first looks for files in the `/etc/NetworkManager/system-connections/` directory. The files in this directory should be in the keyfile format.
+
+Then it looks for files in the `/etc/sysconfig/network-scripts/` directory, in the classic `ifcfg-rh` format.
+
+When files for an interface get created in both of these directories, then the `/etc/NetworkManager/system-connections/` directory gets priority and is used. Further changes in the interfaces config file in the other directory are not picked up.

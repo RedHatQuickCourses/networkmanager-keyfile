@@ -1,6 +1,41 @@
-= Section 1
+= What is NetworkManager keyfile?
 
-* Create multiple copies of this section as needed.
-* Remove any unnecessary sections or chapter pages.
-* Customize the section as appropriate.
-* Ensure that each page contains a manageable amount of content.
+NetworkManager supports profiles stored in the keyfile format.
+
+NetworkManager supports profiles in the `ifcfg` format. In RHEL9, the default format is the keyfile, yet NetworkManager can also work with profiles saved in the ifcfg format. This is useful for tools like `nmcli`, the networking RHEL System Role, or the nmstate API used to manage profiles.
+
+The default settings plugin of NetworkManager creates new profiles in the keyfile format instead of the `ifcfg-rh` format.
+
+This feature changes the plugin order in the NetworkManager configuration file. In the main section of the configuration file, the plugin order is changed from `ifcfg-rh`,`keyfile` to `keyfile`,`ifcfg-rh`.
+
+You can see the configured option with NetworkManager --print-config command.
+
+[source]
+----
+NetworkManager --print-config
+----
+
+.Sample output
+----
+# NetworkManager configuration: /etc/NetworkManager/NetworkManager.conf
+
+[main]
+# plugins=keyfile,ifcfg-rh
+# rc-manager=auto
+# auth-polkit=true
+# dhcp=internal
+# iwd-config-path=
+configure-and-quit=no
+
+[logging]
+# backend=journal
+# audit=false
+
+[device]
+# wifi.backend=wpa_supplicant
+
+# no-auto-default file "/var/lib/NetworkManager/no-auto-default.state"
+----
+
+The plugins field in the preceding output shows that the NetworkManager gives preference to keyfile configurations.
+

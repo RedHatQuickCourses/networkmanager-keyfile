@@ -1,0 +1,10 @@
+= What is the upgrade/compatibility impact of this change?
+
+The biggest effect of this change is that new profiles are now persisted in keyfile format. This changes behavior for the users who expect NetworkManager to write ifcfg-rh files, or who have the scripts or tools that expect that.
+
+What still works is that the existing ifcfg files are loaded after upgrading from RHEL8 to RHEL9. Users who only use the D-Bus API (via one of the client applications like nmcli or the GUI), do not notice the difference.
+
+After upgrading NetworkManager, the ifcfg-rh files are still read, hence no intervention is required by the system administrator.
+
+Also, dropping configuration snippets during package upgrade has its own downsides because new installations behave differently than upgraded systems.
+

@@ -1,0 +1,8 @@
+= Advantages of NetworkManager keyfile
+
+The keyfile format has a better syntax and supports all profile types. The keyfile plugin is the only plugin to support all profiles. Having multiple plugins and file formats is confusing.
+
+The long term goal of NetworkManager is to move away from ifcfg-rh files. It affects existing installations and might require migration of existing configurations.
+
+This change is only a first step and affects how NetworkManager by default persists new profiles to disk.
+

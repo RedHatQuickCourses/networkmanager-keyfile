@@ -1,0 +1,6 @@
+= Is there any change in the user experience?
+
+NetworkManager now prefers the use of the keyfile format (INI files). This format is more readable to users and has a closer resemblance to how the profile is presented in nmcli.
+
+If you use NetworkManager tools that use the D-Bus API (like nmcli or the GUI), then the used storage plugin and format is usually of no concern to you.
+

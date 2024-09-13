@@ -1,0 +1,8 @@
+= Summary
+
+
+* NetworkManager now supports profiles stored in the .ini-style keyfile format.
+
+* Legacy ifcfg format is still be supported but will be deprecated in RHEL10.
+
+* You can enable the keyfile plugin for NetworkManager in its configuration file and manually configure interfaces using the keyfile format.

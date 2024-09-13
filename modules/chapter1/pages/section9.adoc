@@ -1,0 +1,170 @@
+= Guided Exercise: Configure NetworkManager to use a keyfile
+
+Configure a network interface to use a keyfile
+
+*Outcomes:*
+
+Configure NetworkManager to use a keyfile.
+
+
+*Instructions:*
+
+. List the connections in servera.
+  .. Log in to servera from your workstation machine as root.
++
+[source]
+----
+ssh root@servera
+----
+
+  .. List the network interfaces. Notice the CIDR and the mac address of eth0 interface. You use the same values in a later step when you create a keyfile.
++
+[source]
+----
+ip a
+----
++
+.Sample output
+----
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 52:54:00:00:fa:0a brd ff:ff:ff:ff:ff:ff
+    altname enp0s3
+    altname ens3
+    inet 172.25.250.10/24 brd 172.25.250.255 scope global noprefixroute eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::5054:ff:fe00:fa0a/64 scope link
+       valid_lft forever preferred_lft forever
+----
+
+  .. List the connections using nmcli command. Note that the FILENAME column shows the path of the ifcfg file for the interface configuration.
++
+[source]
+----
+nmcli -f NAME,UUID,FILENAME connection
+----
++
+.Sample output
+----
+NAME         UUID                                  FILENAME
+System eth0  5fb06bd0-0bb0-7ffb-45f1-d6edd65f3e03  /etc/sysconfig/network-scripts/ifcfg-eth0
+Press q to quit out of the output view.
+----
+
+. Edit the /etc/NetworkManager/NetworkManager.conf file and enable the keyfile plugin as shown in the following output.
++
+[source]
+----
+[main]
+#plugins = ifcfg-rh,
+plugins=keyfile,ifcfg-rh
+----
+
+. Create a /etc/NetworkManager/system-connections/eth0.nmconnection keyfile with the following content.
++
+[source]
+----
+[connection]
+id=System_eth0
+type=ethernet
+autoconnect=true
+uuid=9c92fad9-6ecb-3e6c-eb4d-8a47c6f50c04
+
+[ipv4]
+method=manual
+address=172.25.250.10/24
+
+[ethernet]
+mac-address=52:54:00:00:fa:0a
+----
++
+The same IP and mac address are used for the interface.
+
+. Set permissions on the configuration file so that only the root user can read and update it.
++
+[source]
+----
+[root@servera ~]# chmod 600 /etc/NetworkManager/system-connections/eth0.nmconnection
+----
+
+. Remove the ifcfg file as now it is redundant.
++
+[source]
+----
+[root@servera ~]# rm -f /etc/sysconfig/network-scripts/ifcfg-eth0
+----
+
+. Reboot the system.
++
+[source]
+----
+[root@servera ~]# reboot
+----
+
+. Verify that keyfile is successfully configured after reboot.
+  .. Log in to servera from your workstation machine as the root user.
++
+[source]
+----
+[student@workstation]$ ssh root@servera
+----
+  .. List the connections using nmcli command. Note that the FILENAME column now shows the path of the keyfile you configured.
++
+[source]
+----
+[root@servera ~]# nmcli -f NAME,UUID,FILENAME connection
+----
++
+.Sample output
+----
+NAME         UUID                                  FILENAME
+System_eth0  9c92fad9-6ecb-3e6c-eb4d-8a47c6f50c04  /etc/NetworkManager/system-connections/eth0.nmconnection
+----
+
+  .. List the network interfaces to verify the same IP and mac address are preserved.
++
+[source]
+----
+[root@servera]# ip a
+----
++
+.Sample output
+----
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 52:54:00:00:fa:0a brd ff:ff:ff:ff:ff:ff
+    altname enp0s3
+    altname ens3
+    inet 172.25.250.10/24 brd 172.25.250.255 scope global noprefixroute eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::b1c4:d51:f682:4cc7/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+----
+
+. Open a terminal to the workstation machine. Run the grading script as the student user on the workstation machine to verify your work.
++
+[source]
+----
+[student@workstation ~]$ lab grade networkmanager-keyfile
+----
++
+.Sample output
+----
+Grading lab.
+
+SUCCESS Checking lab systems
+...output omitted...
+
+Overall lab grade: PASS
+----
+

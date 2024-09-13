@@ -1,3 +1,10 @@
 = Appendix
 
-FIXME: Content for Appendix...
+https://access.redhat.com/solutions/5313011[Why are scripts under /etc/sysconfig/network-scripts directory are gone on rhel8/rhel9?]
+
+https://fedoraproject.org/wiki/Changes/NetworkManager_keyfile_instead_of_ifcfg_rh[Fedora Wiki: Changes/NetworkManager keyfile instead of ifcfg rh]
+
+https://networkmanager.dev/docs/api/latest/nm-settings-keyfile.html[Upstream doc: nm-settings-keyfile]
+
+https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/configuring_and_managing_networking/assembly_networkmanager-connection-profiles-in-keyfile-format_configuring-and-managing-networking#proc_manually-creating-a-networkmanager-profile-in-keyfile-format_assembly_networkmanager-connection-profiles-in-keyfile-format[Product Documentation: Manually creating NetworkManager profiles in key file format]
+
